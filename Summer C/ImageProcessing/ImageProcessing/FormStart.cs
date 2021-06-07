@@ -120,6 +120,25 @@ namespace ImageProcessing
             pictureBoxOriginal.Image = new Bitmap(g_iPictureWidth, g_iPictureHeight);
             loadSelectedFile();
         }
+
+        private void buttonApply_Click(object sender, EventArgs e)
+        {
+            pictureBoxAfterEditing.Image = new Bitmap(g_iPictureWidth, g_iPictureHeight);
+            showEditedPicture();
+        }
+
+        private void showEditedPicture()
+        {
+            for (int x = 0; x < g_iPictureWidth; x++)
+            {
+                for (int y = 0; y < g_iPictureHeight; y++)
+                {
+                    Color pixelColor = m_CurrentEditingPictureBitmap.GetPixel(iOriginalPictureStart_X + x, iOriginalPictureStart_Y + y);
+                    ((Bitmap)pictureBoxAfterEditing.Image).SetPixel(x, y, pixelColor);
+                }
+            }
+            pictureBoxAfterEditing.Refresh();
+        }
     }
         
 }
